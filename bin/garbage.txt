@@ -1,0 +1,98 @@
+tabbedPane.addTab("New tab", null, scrollPane, null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		tabbedPane.addTab("New tab", null, scrollPane_1, null);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane_1.setViewportView(textArea);
+		frame.setVisible(true);
+		
+		
+		try {
+				FileReader fileReader = new FileReader(filepath);
+				BufferedReader bufferedReader = new BufferedReader(
+						fileReader);
+				while ((line = bufferedReader.readLine()) != null) {
+					if(line.contains("\n"))
+					ta.textArea.append(line);
+				}
+				
+				bufferedReader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+	public void FileNewAction(JTabbedPane tabbedPane) {
+		textArea=  new JTextArea();
+		JScrollPane scrollPane = new JScrollPane();
+		tabbedPane.addTab(NewFileName, null, scrollPane, null);
+		scrollPane.setViewportView(textArea);
+	}
+	
+		DefaultMutableTreeNode country;
+		DefaultMutableTreeNode ocean;
+		DefaultMutableTreeNode planet = new DefaultMutableTreeNode("Earth");
+		DefaultMutableTreeNode Continent = new DefaultMutableTreeNode("Continents");
+		DefaultMutableTreeNode Country = new DefaultMutableTreeNode("Country");
+		country = new DefaultMutableTreeNode("Asia");
+		Country.add(country);
+		country = new DefaultMutableTreeNode("Africa");
+		Country.add(country);
+		country = new DefaultMutableTreeNode("Europe");
+		Country.add(country);
+		DefaultMutableTreeNode Ocean = new DefaultMutableTreeNode("Oceans");
+		ocean = new DefaultMutableTreeNode("Pacific");
+		Ocean.add(ocean);
+		ocean = new DefaultMutableTreeNode("Atlantic");
+		Ocean.add(ocean);
+		ocean = new DefaultMutableTreeNode("Antartic");
+		Ocean.add(ocean);
+		planet.add(Continent);
+		Continent.add(Country);
+		planet.add(Ocean);
+		JTree tree = new JTree(planet);
+		
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+		    public void valueChanged(TreeSelectionEvent e) {
+		        TreePath c = tree.getSelectionPath(); //[E:\Sodalime, src, BasicLayout.java]
+		        String a = "";
+		        for(int i=0;i<c.getPathCount();i++){
+		        	a+=c.getPathComponent(i)+File.separator;
+		        }
+		    }
+		    });
+		
+		
+		tree.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				String filepath = null;
+				while (tree.getParent() != null) {
+					filepath += tree.getParent().toString();
+				}
+				FileAction fa = new FileAction();
+				fa.FileOpenTab(filepath);
+			}
+		});\
+		
+		
+		
+		
+		mpanel.setLayout(null);
+		if (mpanel.getComponentCount() == 0) {
+			panel.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+			panelheight += panel.getHeight();
+		} else {
+			panel.setBounds(0, panelheight, panel.getWidth(),
+					panel.getHeight());
+			panelheight += panel.getHeight();
+		}
+		
+		
+		linesTestarea.setPreferredSize(d);
+		linesTestarea.setBackground(Constants.textareabgcolor);
+		linesTestarea.setBorder(BorderFactory.createEmptyBorder(0, 0, 0,1));
+		linesTestarea.setEditable(false);
+		linesTestarea.setFont(new Font("Serif", Font.ITALIC, Constants.fontSize));
+		linesTestarea.setForeground(Constants.linesColor);
+		
+		

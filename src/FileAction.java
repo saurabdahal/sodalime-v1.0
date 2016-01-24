@@ -60,6 +60,7 @@ public class FileAction {
     public void FileOpenTab(Tab ta, String filepath) {
 
         if (StaticVariables.tablist.contains(ta) == false) {
+        	String fileContent = "";
         	ta.newFile = false;
             File file = new File(filepath);
             StaticVariables.tablist.add(ta.addTab(false));
@@ -74,7 +75,12 @@ public class FileAction {
                 Scanner sc = new Scanner(path);
                 String newLine = System.getProperty("line.separator");
                 while (sc.hasNextLine()) {
-                	ta.textArea.append(sc.nextLine() + newLine);
+                	fileContent += sc.nextLine() + newLine;
+                }
+                ta.textArea.setText(fileContent);
+                if (StaticVariables.unsavedfiles.contains(ta.getFilePath())) {
+                    ta.label.setFont(StaticVariables.tabSavedTitleFont);
+                    StaticVariables.unsavedfiles.remove(ta.getFilePath());
                 }
                 sc.close();
             } catch (IOException e) {

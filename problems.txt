@@ -1,0 +1,12 @@
+These are the problems with my project
+1) when i click Open folder under file menu it pops up JFileChooser to select folder 
+  and it displays Tree system of that folder in Scrollpane in left side of TabbedPane.
+  Problem is there is a panel inside Scrollpane and it's layout is set to gridlayout 
+  and whenever i add two folders gridlayout distributes the height of scrollpane between panels
+  of these folders so one folder shows up on topn and another one in middle.
+  How to make it display folders in the ways it it displayed in all Editors ?
+
+2) when i write a document and save it with a name without extension i want it to add ".txt" (for now)
+   to the file, i.e rename the file from "userInput" to "userInput.txt". but it's not happening.
+   Code is on FileAction.java under the method FileSaveAction(Tab ta);
+   
